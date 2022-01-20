@@ -1,0 +1,8 @@
+#define lclibrary_VERSION_MAJOR @lclibrary_VERSION_MAJOR@
+#define lclibrary_VERSION_MINOR @lclibrary_VERSION_MINOR@
+
+#cmakedefine LCLIBRARY_USE_GLPK
+#cmakedefine LCLIBRARY_USE_LKH
+#cmakedefine LCLIBRARY_USE_GLKH
+#cmakedefine LCLIBRARY_USE_GUROBI
+#cmakedefine LCLIBRARY_GLKH_PATH @LCLIBRARY_GLKH_PATH@
