@@ -1,0 +1,84 @@
+# Default configuration for the LineCoverage-library in YAML format
+
+database:
+  path:     'LineCoverage-dataset/most_pop_50cities'
+  data_dir: 'paris'
+
+# 'slc' for single robot
+# 'mlc' for multiple robots
+problem: 'mlc'
+
+# 'beta2_atsp' (preferred)
+# 'beta2_gtsp'
+# 'beta3_atsp'
+# 'ilp_gurobi' (use only if gurobi is installed and configured)
+# 'ilp_glpk' (use for very small graphs)
+solver_slc: 'beta2_atsp'
+
+# 'mem'
+# 'ilp_gurobi' (use only if gurobi is installed and configured)
+solver_mlc: 'mem'
+
+# 'euclidean' for euclidean distance
+# 'travel time' for asymmetric travel time based on speed (see travel_time_config)
+cost_function: 'travel_time'
+travel_time_config:
+  service_speed:  5.0
+  deadhead_speed: 8.0
+  wind_speed:     0.0
+  wind_dir:       45
+
+# Add non-required edges between each pair of vertices
+add_pairwise_nonreq_edges: true
+
+# Convert osm json file to internal text based format
+convert_osm_json: true
+
+# Set the capacity for mlc problem
+capacity: 1800
+
+# 2opt heuristic to improve routes. It can take a long time for large graphs
+use_2opt: false
+
+# Set the time limit for ILP solvers
+ilp_time_limit: 3600 # (in seconds. Used only with Gurobi)
+
+# depot:  mean (use the node closest to the mean)
+#         custom  (provide a specific node ID for the depot)
+#         none  (no depot, cannot be none for mlc)
+depot:
+  mode: mean
+  ID:   1
+
+# These are relevant if a custom graph is provided
+input_graph:
+  lla:    true
+  costs:  false
+
+plot_input_graph:
+  name:             'graph'
+  plot:             true
+  plot_nreq_edges:  false
+
+writeGeoJSON:
+  write:          false
+  filename:       'graph.json'
+  var_name:       'graph_data'
+  non_req_edges:  false
+
+route_output:
+  plot:         true
+  kml:          false
+  data:         false
+  geojson:      false
+  edge_data:    false
+  agg_results:  true
+  append:       false
+  clear_dir:    false
+
+filenames:
+  map_json:     'map_data.json'
+  nodes_ll:     'node_list_lat_long'
+  nodes_data:   'node_data'
+  req_edges:    'req_edge_list'
+  nonreq_edges: 'non_req_edge_list'
