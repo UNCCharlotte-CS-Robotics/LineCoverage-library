@@ -39,7 +39,7 @@ set(LCLIBRARY_EXTERNAL_MCPM_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/external/mcpm/incl
 
 option(LCLIBRARY_BUILD_SHARED_LIBS "Build lclibrary shared library" ${BUILD_SHARED_LIBS})
 
-set(build-shared $<BOOL:${YAML_BUILD_SHARED_LIBS}>)
+set(build-shared $<BOOL:${LCLIBRARY_BUILD_SHARED_LIBS}>)
 if (LCLIBRARY_BUILD_SHARED_LIBS)
 	set(lclibrary-type SHARED)
 	set(lclibrary-label-postfix "shared")
@@ -84,7 +84,7 @@ endif()
 add_library(lclibrary ${lclibrary-type} "")
 
 target_compile_options(lclibrary PRIVATE
-	-O2
+	-O2 -fPIC
 	-Wall -pedantic)
 # -Wextra -Wshadow -Weffc++ -Wno-long-long
 # -pedantic -pedantic-errors)
