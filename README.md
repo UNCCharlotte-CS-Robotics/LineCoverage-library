@@ -34,29 +34,26 @@ If you are on a server:
 
 #### Installation of LineCoverage-library (lclibrary):
 
-Create a new directory where we will be cloning the repository and creating builds:
+Create a new directory for our workspace where we will be cloning the repository and creating builds:
 
-1. `mkdir ~/coverage && cd ~/coverage`   
-2. `mkdir build`  
-3. `mkdir install`  
-4. `git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-library.git`    
-5. `cmake -S LineCoverage-library/ -B ./build/ -DCMAKE_INSTALL_PREFIX=install/`  
-6. `cmake --build build/`  
-7. `cmake --install build/`  
+1. `mkdir ~/coverage_ws && cd ~/coverage_ws`   
+2. `git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-library.git`    
+3. `cmake -S LineCoverage-library/ -B ./build/lclibrary -DCMAKE_INSTALL_PREFIX=install/`  
+4. `cmake --build build/lclibrary`  
+5. `cmake --install build/lclibrary`  
 
 You should be able to see the binary files `slc` and `mlc` in the install directory after this process.
 
 #### Get the LineCoverage-dataset
-`cd  ~/coverage`  
+`cd  ~/coverage_ws`  
 `git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-dataset.git`  
 
 #### Run programs
-`cd ~/coverage`  
-`./install/bin/mlc install/bin/config/default_config.yaml`
+`cd ~/coverage_ws`  
+`./install/bin/mlc LineCoverage-library/config/default_config.yaml`
 
 Check the folder `LineCoverage-dataset/most_pop_50cities/paris/`. You should find the input data and the results.  
-Make a copy of the file `install/bin/config/default_config.yaml` and change according to your preference.  
-The file is also located at `LineCoverage-library/config/default_config.yaml`.
+Make a copy of the file `LineCoverage-library/config/default_config.yaml` and change according to your preference.  
 
 For details on usage see wiki: https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-library/wiki/Usage
 
@@ -89,7 +86,7 @@ For LKH:
 For GLKH:  
 `bash lkh_glkh_setup.sh -alkh -aglkh` (needs LKH)
 
-`cd ~/coverage`  
+`cd ~/coverage_ws`  
 To install LineCoverage-library with LKH and GLKH support, add the following flags to `cmake` command in step 5.
 For LKH:  
 `-DLCLIBRARY_USE_LKH=ON`  
@@ -101,8 +98,18 @@ Folders `glkh` and `lkh` inside `LineCoverage-library/external can be removed. Y
 
 Note: LKH and GLKH are not part of this library. The programs makes system calls to the binaries.
 In your `~/.bashrc` file add the following line so the GLKH can find the executables (required for only GLKH).  
-`export PATH="${PATH}:${HOME}/coverage/install/bin/glkh"`  
+`export PATH="${PATH}:${HOME}/coverage_ws/install/bin/glkh"`  
 `source ~/.bashrc`
+
+#### Python wrappers (work in progress)
+A minimal script for creating and importing python wrappers has been provided in the directory `LineCoverage-library/python`. The python wrapper modules can be installed using the following commands:  
+`cd ~/coverage_ws`  
+`cmake -S LineCoverage-library/python -B build/py_lclibrary -DCMAKE_INSTALL_PREFIX=install/`  
+`cmake --build build/py_lclibrary`  
+`cmake --install build/py_lclibrary`  
+` python3 ./install/bin/rpp_3by2.py`
+
+We are working on creating more python wrappers for the library.
 
 ## Contact
 Users are requested to raise bugs to help improve the library. We are working on improving the documentation. Please use the GitHub issues, pull requests, and discussions.  
