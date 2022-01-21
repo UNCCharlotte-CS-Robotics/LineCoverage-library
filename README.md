@@ -69,7 +69,7 @@ Change installation directory for `Gurobi` in the file `gurobi_setup.sh`
 `source ~/.bashrc`  
 Activate Gurobi license
 
-To install LineCoverage-library with Gurobi enabled, add the following flags to `cmake` flag in step 5:  
+To install LineCoverage-library with Gurobi enabled, add the following flags to `cmake` flag in step 3:  
 `-DLCLIBRARY_USE_GUROBI=ON`  
 Execute installation steps 6 and 7.
 
@@ -87,12 +87,12 @@ For GLKH:
 `bash lkh_glkh_setup.sh -alkh -aglkh` (needs LKH)
 
 `cd ~/coverage_ws`  
-To install LineCoverage-library with LKH and GLKH support, add the following flags to `cmake` command in step 5.
+To install LineCoverage-library with LKH and GLKH support, add the following flags to `cmake` command in step 3.
 For LKH:  
 `-DLCLIBRARY_USE_LKH=ON`  
 For GLKH:  
 `-DLCLIBRARY_USE_LKH=ON -DLCLIBRARY_USE_GLKH=ON`  
-Execute installation steps 6 and 7.
+Execute installation steps 4 and 5.
 
 Folders `glkh` and `lkh` inside `LineCoverage-library/external can be removed. You may also delete the `build` folder.
 
@@ -103,11 +103,18 @@ In your `~/.bashrc` file add the following line so the GLKH can find the executa
 
 #### Python wrappers (work in progress)
 A minimal script for creating and importing python wrappers has been provided in the directory `LineCoverage-library/python`. The python wrapper modules can be installed using the following commands:  
+
+Install python libraries:  
+`sudo apt-get install libpython3-dev`
+
+Install boost libraries:  
+`sudo apt-get install libboost-dev libboost-system-dev libboost-python-dev libboost-numpy-dev`
+
 `cd ~/coverage_ws`  
 `cmake -S LineCoverage-library/python -B build/py_lclibrary -DCMAKE_INSTALL_PREFIX=install/`  
 `cmake --build build/py_lclibrary`  
 `cmake --install build/py_lclibrary`  
-` python3 ./install/bin/rpp_3by2.py`
+` python3 ./install/bin/rpp_3by2.py` (uses numpy)
 
 We are working on creating more python wrappers for the library.
 
