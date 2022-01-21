@@ -30,6 +30,7 @@
 #include <lclibrary/algorithms/euler_tour.h>
 #include <lclibrary/algorithms/connected_components.h>
 #include <memory>
+#include <filesystem>
 
 namespace lclibrary {
 

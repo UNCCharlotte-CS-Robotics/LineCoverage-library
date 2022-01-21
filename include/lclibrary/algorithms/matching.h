@@ -39,7 +39,7 @@
 
 namespace lclibrary{
 
-	void ComputeMatching(std::vector <int> vertex_degree_list, const std::shared_ptr <const APSP_FloydWarshall> &apsp, std::vector <Edge> &matching_edges) {
+	inline void ComputeMatching(std::vector <int> vertex_degree_list, const std::shared_ptr <const APSP_FloydWarshall> &apsp, std::vector <Edge> &matching_edges) {
 		size_t num_odd_vertices = std::count_if (vertex_degree_list.begin(), vertex_degree_list.end(), [](int i) {return ((i%2) == 1);});
 		std::vector <size_t> odd_vertices;
 		odd_vertices.reserve(num_odd_vertices);

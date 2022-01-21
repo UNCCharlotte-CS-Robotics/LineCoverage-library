@@ -24,7 +24,6 @@
 
 #include <lclibrary/core/constants.h>
 #include <lclibrary/core/typedefs.h>
-#include <lclibrary/core/config.h>
 #include <lclibrary/core/math_utils.h>
 #include <lclibrary/core/transform_lla_xy.h>
 #include <lclibrary/core/vec2d.h>

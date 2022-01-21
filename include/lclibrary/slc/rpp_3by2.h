@@ -144,10 +144,8 @@ namespace lclibrary {
 			sol_digraph_->ClearAllEdges();
 			std::vector <Edge> edge_list;
 			route_.GenerateEdgeList(edge_list);
-			std::cout << "Route size: " << edge_list.size() << std::endl;
 			if(sol_digraph_->AddEdge(edge_list) == kFail)
 				return kFail;
-			std::cout << "Route cost: " << route_.GetCost() << std::endl;
 			return kSuccess;
 		}
 
