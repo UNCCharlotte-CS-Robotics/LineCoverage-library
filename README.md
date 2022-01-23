@@ -35,22 +35,27 @@ If you are on a server:
 #### Installation of LineCoverage-library (lclibrary):
 
 Create a new directory for our workspace where we will be cloning the repository and creating builds:
-
-1. `mkdir ~/coverage_ws && cd ~/coverage_ws`   
-2. `git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-library.git`    
-3. `cmake -S LineCoverage-library/ -B ./build/lclibrary -DCMAKE_INSTALL_PREFIX=install/`  
-4. `cmake --build build/lclibrary`  
-5. `cmake --install build/lclibrary`  
+```bash
+mkdir ~/coverage_ws && cd ~/coverage_ws
+git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-library.git
+cmake -S LineCoverage-library/ -B ./build/lclibrary -DCMAKE_INSTALL_PREFIX=install/
+cmake --build build/lclibrary
+cmake --install build/lclibrary
+```
 
 You should be able to see the binary files `slc` and `mlc` in the install directory after this process.
 
 #### Get the LineCoverage-dataset
-`cd  ~/coverage_ws`  
-`git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-dataset.git`  
+```bash
+cd  ~/coverage_ws` 
+git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-dataset.git
+```
 
 #### Run programs
-`cd ~/coverage_ws`  
-`./install/bin/mlc LineCoverage-library/config/default_config.yaml`
+```bash
+cd ~/coverage_ws
+./install/bin/mlc LineCoverage-library/config/default_config.yaml
+```
 
 Check the folder `LineCoverage-dataset/most_pop_50cities/paris/`. You should find the input data and the results.  
 Make a copy of the file `LineCoverage-library/config/default_config.yaml` and change according to your preference.  
@@ -109,13 +114,13 @@ Install python libraries:
 
 Install boost libraries:  
 `sudo apt-get install libboost-dev libboost-system-dev libboost-python-dev libboost-numpy-dev`
-
-`cd ~/coverage_ws`  
-`cmake -S LineCoverage-library/python -B build/py_lclibrary -DCMAKE_INSTALL_PREFIX=install/`  
-`cmake --build build/py_lclibrary`  
-`cmake --install build/py_lclibrary`  
-` python3 ./install/bin/rpp_3by2.py` (uses numpy)
-
+```bash
+cd ~/coverage_ws
+cmake -S LineCoverage-library/python -B build/py_lclibrary -DCMAKE_INSTALL_PREFIX=install/
+cmake --build build/py_lclibrary 
+cmake --install build/py_lclibrary
+python3 ./install/bin/rpp_3by2.py
+ ```
 We are working on creating more python wrappers for the library.
 
 ## Contact
