@@ -62,7 +62,10 @@ namespace lclibrary {
 			m_ = g_->GetM();
 
 			capacity_ = g_->GetCapacity();
-			InitializeRoutes();
+			if(InitializeRoutes()) {
+				std::cerr << "MEM initialization failed\n";
+				return kFail;
+			}
 			std::cout << "MEM: Initialized routes\n";
 			MEM();
 			std::cout << "MEM: solved\n";
@@ -101,7 +104,7 @@ namespace lclibrary {
 			return kSuccess;
 		}
 
-		void InitializeRoutes() {
+		bool InitializeRoutes() {
 			v0 = g_->GetDepot();
 			size_t t, h;
 
@@ -142,9 +145,11 @@ namespace lclibrary {
 					std::cout << route->cost_ << " MEM error\n";
 					std::cout << cost1 << " " << cost2 << std::endl;
 					std::cout << v0 << " " << t << " " << h << std::endl;
+					return kFail;
 				}
 				mem_route_list_.push_back(route);
 			}
+			return kSuccess;
 		}
 
 		bool ComputeSavings(RouteSavings &rs) {

@@ -55,7 +55,10 @@ namespace lclibrary {
 		int Solve() {
 			n_ = g_->GetN();
 			m_ = g_->GetM();
-			InitializeRoutes();
+			if(InitializeRoutes()) {
+				std::cerr << "MEM initialization failed\n";
+				return kFail;
+			}
 			MEM();
 			GenerateRoute();
 			route_ = EulerTourGeneration(sol_digraph_);
@@ -79,7 +82,7 @@ namespace lclibrary {
 			sol_digraph_->AddEdge(edge_list);
 			return 0;
 		}
-		void InitializeRoutes() {
+		bool InitializeRoutes() {
 			v0 = g_->GetDepot();
 			size_t t, h;
 
@@ -108,9 +111,11 @@ namespace lclibrary {
 					std::cout << route->cost_ << " MEM error\n";
 					std::cout << cost1 << " " << cost2 << std::endl;
 					std::cout << v0 << " " << t << " " << h << std::endl;
+					return kFail;
 				}
 				route_list_.push_back(route);
 			}
+			return kSuccess;
 		}
 
 		bool ComputeSavings(RouteSavings &rs) {

@@ -86,7 +86,7 @@ namespace lclibrary {
 	class MEM_Base {
 		SavingsHeap savings_heap_;
 
-		virtual void InitializeRoutes() = 0;
+		virtual bool InitializeRoutes() = 0;
 		virtual bool ComputeSavings(RouteSavings &) = 0;
 		virtual void Merge(const RouteSavings &) = 0;
 		virtual bool IsTourEmpty(const size_t) = 0;
