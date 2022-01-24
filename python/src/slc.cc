@@ -28,6 +28,7 @@
 #include <lclibrary/core/graph.h>
 #include <lclibrary/core/route.h>
 #include <lclibrary/slc/rpp_3by2.h>
+#include <lclibrary/slc/slc_beta2_atsp.h>
 
 using namespace boost::python;
 namespace b_np = boost::python::numpy;
@@ -64,6 +65,37 @@ b_np::ndarray SolveRPP(b_np::ndarray const &vertex_ids, b_np::ndarray const &edg
 	slc_rpp.Solve();
 	lclibrary::Route route;
 	slc_rpp.GetRoute(route);
+	boost::python::tuple shape = boost::python::make_tuple(route.GetRouteLength(), 3);
+	b_np::dtype dtype = b_np::dtype::get_builtin<int>();
+	b_np::ndarray np_edges = b_np::zeros(shape, dtype);
+	shape = boost::python::make_tuple(route.GetRouteLength());
+	dtype = b_np::dtype::get_builtin<double>();
+	int edge_count = 0;
+	for(auto route_it = route.GetRouteStart(); route_it != route.GetRouteEnd(); ++route_it) {
+		auto e = *route_it;
+		np_edges[edge_count][0] = int(e.GetTailVertexID());
+		np_edges[edge_count][1] = int(e.GetHeadVertexID());
+		np_edges[edge_count][2] = int(e.GetReq());
+		++edge_count;
+	}
+	return np_edges;
+
+}
+
+b_np::ndarray SolveSLC_Beta2_atsp(b_np::ndarray const &vertex_ids, b_np::ndarray const &edges_tail, b_np::ndarray const &edges_head, b_np::ndarray const &edges_req, b_np::ndarray const &edges_cost) {
+	std::vector <lclibrary::Vertex> vertices;
+	std::vector <lclibrary::Edge> edge_list;
+	VertexVecFromBnpArray(vertex_ids, vertices);
+	EdgeVecFromBnpArray(edges_tail, edges_head, edges_req, edges_cost, edge_list);
+	auto graph = std::make_shared <lclibrary::Graph>(vertices, edge_list);
+	lclibrary::SLC_Beta2ATSP slc_solver(graph);
+	slc_solver.Use2Opt(false);
+	auto solver_status = slc_solver.Solve();
+	if(solver_status) {
+		std::cerr << "SLC Beta2 ATSP failed\n";
+	}
+	lclibrary::Route route;
+	slc_solver.GetRoute(route);
 	boost::python::tuple shape = boost::python::make_tuple(route.GetRouteLength(), 3);
 	b_np::dtype dtype = b_np::dtype::get_builtin<int>();
 	b_np::ndarray np_edges = b_np::zeros(shape, dtype);

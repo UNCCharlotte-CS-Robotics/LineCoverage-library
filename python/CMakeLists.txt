@@ -14,11 +14,11 @@ message("Installing for python version: ${Python_VERSION_MAJOR}.${Python_VERSION
 find_package(lclibrary REQUIRED)
 find_package(Boost COMPONENTS system python numpy REQUIRED)
 
-Python_add_library(py_lclibrary ${PROJECT_SOURCE_DIR}/src/vertex.cc)
+Python_add_library(py_lclibrary ${PROJECT_SOURCE_DIR}/src/slc.cc)
 
-target_compile_options(py_lclibrary PRIVATE -O2 -Wall -pedantic)
+target_compile_options(py_lclibrary PRIVATE -O3 -Wall -pedantic)
 
-target_link_libraries(py_lclibrary PUBLIC lclibrary ${Boost_LIBRARIES} ${Python_LIRARIES})
+target_link_libraries(py_lclibrary PUBLIC lclibrary ${Boost_LIBRARIES} ${Python_LIRARIES} glpk)
 target_include_directories(py_lclibrary PUBLIC ${Boost_INCLUDE_DIRS} ${Python_INCLUDE_DIRS})
 
 install(TARGETS py_lclibrary LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
