@@ -93,6 +93,11 @@ namespace lclibrary {
 				double wind_dir;
 			} travel_time;
 
+			struct Ramp {
+				double speed;
+				double acceleration;
+			} ramp;
+
 			struct TravelTimeCircTurns {
 				double service_speed;
 				double deadhead_speed;
@@ -283,6 +288,12 @@ namespace lclibrary {
 					travel_time.deadhead_speed = travel_time_yaml["deadhead_speed"].as<double>();
 					travel_time.wind_speed = travel_time_yaml["wind_speed"].as<double>();
 					travel_time.wind_dir = travel_time_yaml["wind_dir"].as<double>() * M_PI/180.;
+				}
+
+				if(cost_function == "ramp") {
+					auto ramp_yaml = yaml_config_["ramp_config"];
+					ramp.speed = ramp_yaml["speed"].as<double>();
+					ramp.acceleration = ramp_yaml["acceleration"].as<double>();
 				}
 
 				if(cost_function == "travel_time_circturns") {

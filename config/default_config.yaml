@@ -21,12 +21,17 @@ solver_mlc: 'mem'
 
 # 'euclidean' for euclidean distance
 # 'travel time' for asymmetric travel time based on speed (see travel_time_config)
+# 'ramp' for ramp based velocity profile
 cost_function: 'travel_time'
 travel_time_config:
   service_speed:  5.0
   deadhead_speed: 8.0
   wind_speed:     0.0
   wind_dir:       45
+
+ramp_config:
+  speed:        1.0
+  acceleration: 1.0
 
 # Add non-required edges between each pair of vertices
 add_pairwise_nonreq_edges: true

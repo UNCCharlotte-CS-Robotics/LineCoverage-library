@@ -76,6 +76,14 @@ namespace lclibrary {
 		if(GraphCreate(config, g) == kFail) {
 			return kFail;
 		}
+		
+		if(config.cost_function == "euclidean") {
+			g->SetDefaultEdgeCosts();
+		}
+
+		if(config.cost_function == "ramp") {
+			g->SetRampEdgeCosts(config.ramp.acceleration, config.ramp.speed);
+		}
 
 		if(config.cost_function == "travel_time") {
 			std::shared_ptr <EdgeCost> edge_cost_fn;
