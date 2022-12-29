@@ -47,7 +47,7 @@ You should be able to see the binary files `slc` and `mlc` in the install direct
 
 #### Get the LineCoverage-dataset
 ```bash
-cd  ~/coverage_ws` 
+cd  ~/coverage_ws  
 git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-dataset.git
 ```
 
