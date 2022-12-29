@@ -38,7 +38,7 @@ Create a new directory for our workspace where we will be cloning the repository
 ```bash
 mkdir ~/coverage_ws && cd ~/coverage_ws
 git clone https://github.com/UNCCharlotte-CS-Robotics/LineCoverage-library.git
-cmake -S LineCoverage-library/ -B ./build/lclibrary -DCMAKE_INSTALL_PREFIX=install/
+cmake -S LineCoverage-library/ -B ./build/lclibrary -DCMAKE_INSTALL_PREFIX=install/ -DCMAKE_BUILD_TYPE=Release
 cmake --build build/lclibrary
 cmake --install build/lclibrary
 ```
@@ -99,7 +99,7 @@ For GLKH:
 `-DLCLIBRARY_USE_LKH=ON -DLCLIBRARY_USE_GLKH=ON`  
 Execute installation steps 4 and 5.
 
-Folders `glkh` and `lkh` inside `LineCoverage-library/external can be removed. You may also delete the `build` folder.
+Folders `glkh` and `lkh` inside `LineCoverage-library/external` can be removed. You may also delete the `build` folder.
 
 Note: LKH and GLKH are not part of this library. The programs makes system calls to the binaries.
 In your `~/.bashrc` file add the following line so the GLKH can find the executables (required for only GLKH).  
@@ -114,9 +114,10 @@ Install python libraries:
 
 Install boost libraries:  
 `sudo apt-get install libboost-dev libboost-system-dev libboost-python-dev libboost-numpy-dev`
+
 ```bash
 cd ~/coverage_ws
-cmake -S LineCoverage-library/python -B build/py_lclibrary -DCMAKE_INSTALL_PREFIX=install/
+cmake -S LineCoverage-library/python -B build/py_lclibrary -DCMAKE_INSTALL_PREFIX=install/ -DCMAKE_BUILD_TYPE=Release
 cmake --build build/py_lclibrary 
 cmake --install build/py_lclibrary
 python3 ./install/bin/rpp_3by2.py
@@ -126,7 +127,7 @@ We are working on creating more python wrappers for the library.
 ## Contact
 Users are requested to raise bugs to help improve the library. We are working on improving the documentation. Please use the GitHub issues, pull requests, and discussions.  
 The program is authored by Saurav Agarwal during his PhD (advised by Srinivas Akella) at the University of North Carolina at Charlotte.  
-Saurav Agarwal: https://webpages.uncc.edu/sagarw10/  
+Saurav Agarwal: https://saurav.fyi
 Srinivas Akella: https://webpages.uncc.edu/sakella/
 
 ## License and Acknowledgments
