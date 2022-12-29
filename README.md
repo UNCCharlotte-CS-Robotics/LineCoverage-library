@@ -64,7 +64,7 @@ For details on usage see wiki: https://github.com/UNCCharlotte-CS-Robotics/LineC
 
 #### Install with Gurobi:
 Obtain Gurobi from https://www.gurobi.com/  
-License and installation instructions are available at https://www.gurobi.com/documentation/9.5/quickstart_linux/index.html. Gurobi provides free academic license.  
+License and installation instructions are available at https://www.gurobi.com/documentation/10.0/quickstart_linux/index.html. Gurobi provides free academic license.  
 
 A helpful installation script is provided for convenient installation.  
 Please set the installation directory in the script.  

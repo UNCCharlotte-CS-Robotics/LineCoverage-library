@@ -3,7 +3,7 @@
 # Gurobi installation script
 
 INSTALL_DIR=${HOME}/opt/
-MAJOR_VERSION=9.5
+MAJOR_VERSION=10.0
 MINOR_VERSION=0
 mkdir -p ${INSTALL_DIR}
 cd ${INSTALL_DIR}
