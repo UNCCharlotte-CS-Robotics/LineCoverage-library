@@ -97,6 +97,7 @@ target_include_directories(lclibrary PUBLIC
 	$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
 if(LCLIBRARY_USE_GUROBI)
+	link_directories($ENV{GUROBI_HOME}/lib)
 	target_include_directories(lclibrary PUBLIC
 		$<BUILD_INTERFACE:${GUROBI_INCLUDE_DIR}>
 		$<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
