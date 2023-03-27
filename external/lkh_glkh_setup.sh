@@ -39,11 +39,11 @@ then
 	echo ""
 	echo "===================="
 	echo ""
-	wget -O lkh.tgz http://akira.ruc.dk/~keld/research/LKH-3/LKH-3.0.6.tgz
+	wget -O lkh.tgz http://akira.ruc.dk/~keld/research/LKH-3/LKH-3.0.8.tgz
 	tar -xzf lkh.tgz -C ${LC_EXT_DIR}
 	rm lkh.tgz
 	cd ${LC_EXT_DIR}
-	mv LKH-3.0.6 lkh
+	mv LKH-3.0.8 lkh
 fi
 
 if [[ ${USE_GLKH} == true ]]
@@ -60,6 +60,7 @@ then
 	tar -xzf GLKH-1.1.tgz -C ${LC_EXT_DIR}
 	rm GLKH-1.1.tgz
 	mv GLKH-1.1 glkh
+	sed -i ' 4 s/.*/& -fcommon/' glkh/SRC/Makefile
 	rm glkh/SRC/GLKH_EXPmain.c
 	rm glkh/SRC/GLKH_CHECKmain.c
 
