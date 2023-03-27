@@ -187,7 +187,7 @@ if(LCLIBRARY_USE_GLKH)
 
 	add_executable(GLKH ${glkh-sources})
 	target_include_directories(GLKH PRIVATE "${LCLIBRARY_EXTERNAL_GLKH_SOURCE_DIR}/SRC/INCLUDE/")
-	target_compile_options(GLKH PRIVATE -O3)
+	target_compile_options(GLKH PRIVATE -O3 -fcommon)
 	target_link_libraries(GLKH PRIVATE m)
 	install(TARGETS GLKH DESTINATION ${CMAKE_INSTALL_BINDIR}/glkh/)
 	install(TARGETS LKH DESTINATION ${CMAKE_INSTALL_BINDIR}/glkh/)
